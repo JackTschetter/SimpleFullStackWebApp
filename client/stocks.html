@@ -1,0 +1,70 @@
+<!--Bonus page, developed with Yahoo finance API. -->
+
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <title>stocks</title>
+    <style type="text/css">
+        .jumbotron {text-align: center;}
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expanded navbar-light bg-light">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="allevents">All Events</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link active" href="schedule">Schedule</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="addevents">Add Event</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="stocks">Stock Page</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="logout">Logout</a>
+        </li>
+    </ul>
+</nav>
+<div class="jumbotron" style="background: DarkSeaGreen !important">
+    <h1>Bonus Stock Quotes Page</h1>
+    <p>Stock quotes using Yahoo Finance API.</p>
+</div>
+<div class="container mb-5">
+    <label for="stockTicker">Enter a Stock Ticker for a Real Time Price Quote:</label>
+    <input id="stockTicker" type="text" class="form-control" name="stockTicker" required>
+    <button class="btn btn-block btn-primary" onclick="getPrice()">Get Quote</button>
+</div>
+<script>
+    function getPrice() {
+        console.log('here');
+        $.ajax({
+            url: 'stockQuote',
+            params: {modules: 'defaultKeyStatistics,assetProfile'},
+            headers: {
+            'x-api-key': 'INSERT API KEY HERE'
+            },
+            success: function(response){
+                alert(response.regularMarketPrice);
+            }
+    })
+}
+</script>
+</body>
+</html>
